@@ -33,28 +33,10 @@ export function EmailsInput(node: HTMLElement, options: PublicOptions): PublicAp
     };
 }
 
-function isEmailValid(email: string): boolean {
-  return /^.+@.+\..+$/.test(email);
+declare global {
+  interface Window {
+    EmailsInput: (node: HTMLElement, options: PublicOptions) => PublicApi;
+  }
 }
 
-const inputContainerNode = document.querySelector("#emails-input");
-const emailsInput = EmailsInput(inputContainerNode as HTMLElement, { initialEmails: ['admin@example.com', 'asd.com', 'bienvenido@gmail.com', 'admin@@', 'azucar@ysabor.com'], validator: isEmailValid });
-
-document.querySelector("#button-add")?.addEventListener('click', function onButtonAddClick() {
-  const email =
-    (Math.random().toString(36) + "00000000000000000").slice(2, 12) +
-    "@" +
-    (Math.random() > 0.2 ? "domain" : "") +
-    ".com";
-
-  const allEmails = emailsInput.getEmails();
-  emailsInput.setEmails(allEmails.concat([email]));
-});
-
-document.querySelector("#button-get")?.addEventListener('click', function onButtonGetClick() {
-  const validEmailsCount = emailsInput.getEmails().filter(function(email) {
-    return isEmailValid(email);
-  }).length;
-
-  alert(validEmailsCount);
-});
+window.EmailsInput = EmailsInput;

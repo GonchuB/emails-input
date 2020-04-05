@@ -34,9 +34,30 @@
 
     <script src="../dist/emails-input.js"></script>
     <script>
-      // var inputContainerNode = document.querySelector("#emails-input");
-      // var emailsInput = EmailsInput(inputContainerNode, {});
-      // Handling Add email and Get emails count buttons, etc.
+      function isEmailValid(email) {
+        return /^.+@.+\..+$/.test(email);
+      }
+      const inputContainerNode = document.querySelector("#emails-input");
+      const emailsInput = EmailsInput(inputContainerNode, { initialEmails: ['admin@example.com', 'asd.com', 'bienvenido@gmail.com', 'admin@@', 'azucar@ysabor.com'], validator: isEmailValid });
+      
+      document.querySelector("#button-add")?.addEventListener('click', function onButtonAddClick() {
+        const email =
+          (Math.random().toString(36) + "00000000000000000").slice(2, 12) +
+          "@" +
+          (Math.random() > 0.2 ? "domain" : "") +
+          ".com";
+      
+        const allEmails = emailsInput.getEmails();
+        emailsInput.setEmails(allEmails.concat([email]));
+      });
+      
+      document.querySelector("#button-get")?.addEventListener('click', function onButtonGetClick() {
+        const validEmailsCount = emailsInput.getEmails().filter(function(email) {
+          return isEmailValid(email);
+        }).length;
+      
+        alert(validEmailsCount);
+      });
     </script>
   </body>
 </html>
