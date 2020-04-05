@@ -17,7 +17,7 @@
     "name": "Gonzalo Beviglia",
     "email": "gonzalo.beviglia@gmail.com"
   },
-  "main": "dist/bundle.js",
+  "main": "dist/emails-input.js",
   "types": "dist/types/index.d.ts",
   "license": "MIT",
   "devDependencies": {

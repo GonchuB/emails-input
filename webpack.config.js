@@ -2,10 +2,10 @@ const path = require('path');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
-  entry: path.resolve(__dirname, 'src'),
+  entry: path.resolve(__dirname, 'src', 'index.ts'),
 
   output: {
-    filename: 'bundle.js',
+    filename: 'emails-input.js',
     path: path.resolve(__dirname, 'dist'),
   },
 

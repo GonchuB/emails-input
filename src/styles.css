@@ -1,0 +1,52 @@
+.emails-input--container {
+  background: #ffffff;
+  border: 1px solid #c3c2cf;
+  box-sizing: border-box;
+  border-radius: 4px;
+
+  padding: 8px 7px;
+}
+
+.emails-input--email-tag {
+  margin: 4px 8px 4px 0;
+
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  color: #050038;
+
+  display: inline-block;
+}
+
+.emails-input--email-tag--valid {
+  background: rgba(102, 153, 255, 0.2);
+  border-radius: 100px;
+  padding: 4px 10px;
+}
+
+.emails-input--email-tag--invalid {
+  border-bottom: 1px dashed #d92929;
+  padding: 4px 0;
+}
+
+.emails-input--email-tag-action {
+  font-size: 12px;
+  padding: 0 0 0 8px;
+}
+
+.emails-input--field {
+  border: 0;
+  padding: 8px;
+  outline: 0;
+
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  color: #050038;
+
+  margin-bottom: 28px;
+}

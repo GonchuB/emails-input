@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "allowSyntheticDefaultImports": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedParameters": true,
@@ -11,13 +12,11 @@
     "declaration": true,
     "target": "es2015",
     "module": "es2015",
-    "strict": true
+    "strict": true,
+    "moduleResolution": "node"
   },
   "include": [
     "src/**/*"
   ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "exclude": ["node_modules", "dist", "src/__tests__"]
 }
