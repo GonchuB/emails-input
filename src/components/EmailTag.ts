@@ -45,11 +45,11 @@ export function EmailTag(props: EmailTagProps): Component {
             event.preventDefault();
         }
     }
-    function remove(): void {
+    function remove(): HTMLElement {
         emailActionElement.removeEventListener('click', handleActionClick);
         emailActionElement.removeEventListener('keypress', handleActionKeypress);
-        emailActionElement.remove();
-        emailElement.remove();
+        emailElement.removeChild(emailActionElement);
+        return emailElement;
     }
     function render(): HTMLElement {
         const validityClassName = props.email.isValid ? CLASS_NAMES.EMAIL_TAG_VALID : CLASS_NAMES.EMAIL_TAG_INVALID;

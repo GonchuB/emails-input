@@ -48,6 +48,9 @@ https://adoring-hamilton-929e1b.netlify.com/
 ### Pasting 1,000 csv emails
 ![paste-1000](https://user-images.githubusercontent.com/857221/78581127-be530b00-7833-11ea-8940-e882c401afc3.jpg)
 
+### After removing the 1,000 emails
+![remove-1000](https://user-images.githubusercontent.com/857221/78587405-2eb25a00-783d-11ea-8a50-23607e865b96.png)
+
 ## Building the repo
 
 ```shell

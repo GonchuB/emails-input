@@ -30,11 +30,13 @@ export function Layout(props: LayoutProps): Component {
         return layoutContainer;
     }
 
-    function remove(): void {
+    function remove(): HTMLElement {
         if (layoutComponents.emailList) {
-            layoutComponents.emailList.remove();
-            layoutContainer.remove();
+            const emailListElement = layoutComponents.emailList.remove();
+            layoutContainer.removeChild(emailListElement);
         }
+
+        return layoutContainer;
     }
 
     props.repository.subscribe(function (emails: Email[]): void {

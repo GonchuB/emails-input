@@ -11,7 +11,7 @@ const defaultEmailField = {
         element.setAttribute('id', 'email-field');
         return element;
     },
-    remove: noop,
+    remove: noop as () => HTMLElement,
 };
 
 function createTestComponent({
@@ -63,7 +63,7 @@ describe('EmailList component', function () {
         });
     });
     describe('remove', function () {
-        it('removes the email tags from the dom', function () {
+        it('removes the email tags and field from the dom', function () {
             const emailList = createTestComponent({
                 emails: [
                     { id: 'email@example.com', value: 'email@example.com', isValid: true },
@@ -74,8 +74,7 @@ describe('EmailList component', function () {
             const emailListElement = emailList.render();
             emailList.remove();
 
-            const [emailField] = emailListElement.children;
-            expect(emailField.getAttribute('id')).toEqual('email-field');
+            expect(emailListElement.children.length).toEqual(0);
         });
     });
     describe('update', function () {

@@ -21,12 +21,14 @@ export function EmailList(props: EmailListProps): EmailListApi {
     const emailFieldElement: HTMLElement = props.emailField.render();
 
     function removeEmail(emailId: Email['id']): void {
-        emailComponents[emailId].remove();
+        const emailTagElement = emailComponents[emailId].remove();
+        listContainer.removeChild(emailTagElement);
         delete emailComponents[emailId];
+        props.onDelete(emailId);
     }
     function render(): HTMLElement {
         props.emails.forEach(function (email: Email) {
-            const emailComponent = EmailTag({ onDelete: props.onDelete, email });
+            const emailComponent = EmailTag({ onDelete: removeEmail, email });
             emailComponents[email.id] = emailComponent;
             listContainer.appendChild(emailComponent.render());
         });
@@ -55,10 +57,12 @@ export function EmailList(props: EmailListProps): EmailListApi {
         });
         return listContainer;
     }
-    function remove(): void {
+    function remove(): HTMLElement {
+        listContainer.removeChild(emailFieldElement);
         Object.keys(emailComponents).forEach(function (emailId: Email['id']) {
             removeEmail(emailId);
         });
+        return listContainer;
     }
 
     return {

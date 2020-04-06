@@ -22,7 +22,7 @@ export function EmailField(props: EmailFieldProps): Component {
         }
     }
     function handleInputKeyPress(event: KeyboardEvent): void {
-        if (['Enter', '44'].indexOf(event.code) >= 0) {
+        if (['Enter', '32'].indexOf(event.code) >= 0) {
             event.preventDefault();
             submitField();
         }
@@ -46,11 +46,11 @@ export function EmailField(props: EmailFieldProps): Component {
     inputElement.addEventListener('blur', handleBlur);
     inputElement.addEventListener('paste', handlePaste);
 
-    function remove(): void {
+    function remove(): HTMLInputElement {
         inputElement.removeEventListener('keypress', handleInputKeyPress);
         inputElement.removeEventListener('blur', handleBlur);
         inputElement.removeEventListener('paste', handlePaste);
-        inputElement.remove();
+        return inputElement;
     }
     function render(): HTMLInputElement {
         return inputElement;
