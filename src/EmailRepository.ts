@@ -58,8 +58,6 @@ export function EmailRepository(initialEmails: EmailValue[], validator: EmailVal
 
     setEmails(initialEmails);
 
-    
-
     return {
         setEmails,
         getAllEmails,

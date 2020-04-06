@@ -10,17 +10,15 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json']
+    extensions: ['.ts', '.tsx', '.js', '.json'],
   },
 
   module: {
     rules: [
       { test: /\.(ts|js)x?$/, loader: 'babel-loader', exclude: /node_modules/ },
-      { test: /\.css$/i, use: ['style-loader', 'css-loader'] }
+      { test: /\.css$/i, use: ['style-loader', 'css-loader'] },
     ],
   },
 
-  plugins: [
-    new ForkTsCheckerWebpackPlugin(),
-  ]
+  plugins: [new ForkTsCheckerWebpackPlugin()],
 };

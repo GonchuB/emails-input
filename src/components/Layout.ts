@@ -1,8 +1,4 @@
-import {
-    EmailRepositoryApi,
-    Component,
-    Email,
-} from '../types';
+import { EmailRepositoryApi, Component, Email } from '../types';
 import { IDS, CLASS_NAMES } from '../constants';
 import { EmailList, EmailListApi } from './EmailList';
 import { EmailField } from './EmailField';
@@ -24,7 +20,7 @@ export function Layout(props: LayoutProps): Component {
     layoutContainer.setAttribute('class', CLASS_NAMES.EMAILS_INPUT);
 
     function render(): HTMLElement {
-        const emailField = EmailField({ emailValidator: repository.validator, onSubmit: repository.addEmail })
+        const emailField = EmailField({ emailValidator: repository.validator, onSubmit: repository.addEmail });
         layoutComponents.emailField = emailField;
 
         const emailList = EmailList({
@@ -45,7 +41,7 @@ export function Layout(props: LayoutProps): Component {
         }
     }
 
-    props.repository.subscribe(function(emails: Email[]): void {
+    props.repository.subscribe(function (emails: Email[]): void {
         (layoutComponents.emailList as EmailListApi).update(emails);
     });
 

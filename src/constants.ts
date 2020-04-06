@@ -17,9 +17,9 @@ export const CLASS_NAMES = {
 
 export const STRINGS = {
     FIELD_PLACEHOLDER: 'add more people...',
-}
+};
 
 export const ACCESSIBILITY = {
     DELETE_EMAIL_BUTTON: (value: string): string => 'Delete ' + value,
-    EMAIL_FIELD_INPUT: 'Add more people'
-}
+    EMAIL_FIELD_INPUT: 'Add more people',
+};

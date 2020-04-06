@@ -1,8 +1,4 @@
-import {
-    DeleteHandler,
-    Email,
-    Component,
-} from '../types';
+import { DeleteHandler, Email, Component } from '../types';
 import { IDS, CLASS_NAMES } from '../constants';
 import { EmailTag } from './EmailTag';
 
@@ -48,12 +44,14 @@ export function EmailList(props: EmailListProps): EmailListApi {
             listContainer.insertBefore(emailComponent.render(), emailFieldElement);
         });
         const toDelete = Object.keys(emailComponents).filter(function (emailId) {
-            return emails.findIndex(function (email) {
-                return email.id === emailId;
-            }) < 0;
+            return (
+                emails.findIndex(function (email) {
+                    return email.id === emailId;
+                }) < 0
+            );
         });
-        toDelete.forEach(function(emailId) {
-            removeEmail(emailId)
+        toDelete.forEach(function (emailId) {
+            removeEmail(emailId);
         });
         return listContainer;
     }

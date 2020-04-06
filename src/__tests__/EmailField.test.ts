@@ -2,8 +2,10 @@ import { EmailField } from '../components/EmailField';
 import { Component, SubmitHandler, EmailValidator, EmailValue } from '../types';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-const noop = function(): void {};
-const defaultEmailValidator = function(email: EmailValue): boolean{ return email.length > 0 }
+const noop = function (): void {};
+const defaultEmailValidator = function (email: EmailValue): boolean {
+    return email.length > 0;
+};
 
 function createTestComponent({
     onSubmit = noop as SubmitHandler,
@@ -12,24 +14,24 @@ function createTestComponent({
     return EmailField({
         onSubmit,
         emailValidator,
-    })
+    });
 }
 
-describe('EmailField component', function() {
-    describe('render', function() {
-        it('creates the correct container', function() {
+describe('EmailField component', function () {
+    describe('render', function () {
+        it('creates the correct container', function () {
             const emailField = createTestComponent();
 
             const emailFieldElement = emailField.render();
 
-            expect(emailFieldElement.getAttribute("id")).toEqual('emails-input-field');
-            expect(emailFieldElement.getAttribute("class")).toEqual('emails-input--field');
-            expect(emailFieldElement.getAttribute("type")).toEqual('email');
-            expect(emailFieldElement.getAttribute("placeholder")).toEqual('add more people...');
+            expect(emailFieldElement.getAttribute('id')).toEqual('emails-input-field');
+            expect(emailFieldElement.getAttribute('class')).toEqual('emails-input--field');
+            expect(emailFieldElement.getAttribute('type')).toEqual('email');
+            expect(emailFieldElement.getAttribute('placeholder')).toEqual('add more people...');
         });
     });
-    describe('keypress event', function() {
-        it('submits the field value when pressing enter', function() {
+    describe('keypress event', function () {
+        it('submits the field value when pressing enter', function () {
             const onSubmit = jest.fn();
             const emailField = createTestComponent({ onSubmit });
 
@@ -39,7 +41,7 @@ describe('EmailField component', function() {
 
             expect(onSubmit).toHaveBeenCalledWith('some@email.com');
         });
-        it('does not submit when pressing enter if the field is empty', function() {
+        it('does not submit when pressing enter if the field is empty', function () {
             const onSubmit = jest.fn();
             const emailField = createTestComponent({ onSubmit });
 
@@ -49,7 +51,7 @@ describe('EmailField component', function() {
 
             expect(onSubmit).not.toHaveBeenCalled();
         });
-        it('does not submit when pressing another key', function() {
+        it('does not submit when pressing another key', function () {
             const onSubmit = jest.fn();
             const emailField = createTestComponent({ onSubmit });
 
@@ -59,7 +61,7 @@ describe('EmailField component', function() {
 
             expect(onSubmit).not.toHaveBeenCalled();
         });
-        it('clears the field value when submitting', function() {
+        it('clears the field value when submitting', function () {
             const emailField = createTestComponent();
 
             const emailFieldElement = emailField.render();
@@ -69,8 +71,8 @@ describe('EmailField component', function() {
             expect((emailFieldElement as HTMLInputElement).value).toEqual('');
         });
     });
-    describe('blur event', function() {
-        it('submits the field value when blurring', function() {
+    describe('blur event', function () {
+        it('submits the field value when blurring', function () {
             const onSubmit = jest.fn();
             const emailField = createTestComponent({ onSubmit });
 
@@ -80,7 +82,7 @@ describe('EmailField component', function() {
 
             expect(onSubmit).toHaveBeenCalledWith('some@email.com');
         });
-        it('does not submit when pressing enter if the field is empty', function() {
+        it('does not submit when pressing enter if the field is empty', function () {
             const onSubmit = jest.fn();
             const emailField = createTestComponent({ onSubmit });
 
@@ -91,7 +93,7 @@ describe('EmailField component', function() {
             expect(onSubmit).not.toHaveBeenCalled();
         });
 
-        it('clears the field value when submitting', function() {
+        it('clears the field value when submitting', function () {
             const emailField = createTestComponent();
 
             const emailFieldElement = emailField.render();
@@ -101,8 +103,8 @@ describe('EmailField component', function() {
             expect((emailFieldElement as HTMLInputElement).value).toEqual('');
         });
     });
-    describe('remove', function() {
-        it('removes event listeners', function() {
+    describe('remove', function () {
+        it('removes event listeners', function () {
             const onSubmit = jest.fn();
             const emailField = createTestComponent({ onSubmit });
 

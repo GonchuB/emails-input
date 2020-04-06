@@ -16,11 +16,13 @@ export function EmailsInput(node: HTMLElement, options: PublicOptions): PublicAp
         });
     }
     function subscribe(callback: EmailValueChangeHandler): void {
-      repository.subscribe(function (emails: Email[]) {
-          callback(emails.map(function (email: Email){
-            return email.value;
-          }));
-        })
+        repository.subscribe(function (emails: Email[]) {
+            callback(
+                emails.map(function (email: Email) {
+                    return email.value;
+                }),
+            );
+        });
     }
 
     const layoutElement = Layout({ repository });
@@ -34,9 +36,9 @@ export function EmailsInput(node: HTMLElement, options: PublicOptions): PublicAp
 }
 
 declare global {
-  interface Window {
-    EmailsInput: (node: HTMLElement, options: PublicOptions) => PublicApi;
-  }
+    interface Window {
+        EmailsInput: (node: HTMLElement, options: PublicOptions) => PublicApi;
+    }
 }
 
 window.EmailsInput = EmailsInput;
