@@ -40,6 +40,14 @@ https://adoring-hamilton-929e1b.netlify.com/
 </script>
 ```
 
+## Performance
+
+### Pasting 50 csv emails
+![paste-50](https://user-images.githubusercontent.com/857221/78581134-c14dfb80-7833-11ea-9e75-9e60374704b7.jpg)
+
+### Pasting 1,000 csv emails
+![paste-1000](https://user-images.githubusercontent.com/857221/78581127-be530b00-7833-11ea-8940-e882c401afc3.jpg)
+
 ## Building the repo
 
 ```shell
