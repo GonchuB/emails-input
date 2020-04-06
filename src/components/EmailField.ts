@@ -3,7 +3,7 @@ import {
     SubmitHandler,
     Component,
 } from '../types';
-import { IDS, CLASS_NAMES, STRINGS } from '../constants';
+import { IDS, CLASS_NAMES, STRINGS, ACCESSIBILITY } from '../constants';
 
 interface EmailFieldProps {
     emailValidator: EmailValidator;
@@ -16,6 +16,7 @@ export function EmailField(props: EmailFieldProps): Component {
     inputElement.setAttribute("id", IDS.EMAIL_FIELD);
     inputElement.setAttribute("class", CLASS_NAMES.EMAIL_FIELD);
     inputElement.setAttribute("placeholder", STRINGS.FIELD_PLACEHOLDER);
+    inputElement.setAttribute("aria-label", ACCESSIBILITY.EMAIL_FIELD_INPUT);
 
     function submitField(): void{
         const email = inputElement.value;

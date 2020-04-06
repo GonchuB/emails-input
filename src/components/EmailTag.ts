@@ -3,7 +3,7 @@ import {
     Email,
     Component,
 } from '../types';
-import { IDS, CLASS_NAMES } from '../constants';
+import { IDS, CLASS_NAMES, ACCESSIBILITY } from '../constants';
 
 interface EmailTagProps {
     onDelete: DeleteHandler;
@@ -13,10 +13,11 @@ interface EmailTagProps {
 export function EmailTag(props: EmailTagProps): Component {
     const emailElement = document.createElement("span");
     emailElement.setAttribute("id", IDS.EMAIL_TAG(props.email.id));
-
+    
     const emailActionElement = document.createElement("span");
     emailActionElement.setAttribute("role", "button");
     emailActionElement.setAttribute("tabindex", "0");
+    emailActionElement.setAttribute("aria-label", ACCESSIBILITY.DELETE_EMAIL_BUTTON(props.email.value));
 
     const svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     const svgPath = document.createElementNS("http://www.w3.org/2000/svg", 'path');
