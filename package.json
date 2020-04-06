@@ -8,6 +8,7 @@
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "webpack --mode=production",
     "build:js:dev": "webpack --mode=development",
+    "build:public": "webpack --mode=production; mv dist/emails-input.js public/",
     "build": "npm run build:types && npm run build:js",
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "lint:fix": "tsc --noEmit && eslint 'src/**/*.{js,ts,tsx}' --fix",
