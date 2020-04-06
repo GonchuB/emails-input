@@ -6,7 +6,6 @@ import {
 import { IDS, CLASS_NAMES } from '../constants';
 
 interface EmailTagProps {
-    node: HTMLElement;
     onDelete: DeleteHandler;
     email: Email;
 }
@@ -39,5 +38,5 @@ export function EmailTag(props: EmailTagProps): Component {
 
         return emailElement;
     }
-    return { container: props.node, remove, render };
+    return { remove, render };
 }

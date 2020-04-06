@@ -7,7 +7,6 @@ import { IDS, CLASS_NAMES } from '../constants';
 import { EmailTag } from './EmailTag';
 
 interface EmailListProps {
-    node: HTMLElement;
     onDelete: DeleteHandler;
     emails: Email[];
     emailField: Component;
@@ -31,7 +30,7 @@ export function EmailList(props: EmailListProps): EmailListApi {
     }
     function render(): HTMLElement {
         props.emails.forEach(function (email: Email) {
-            const emailComponent = EmailTag({ onDelete: props.onDelete, email, node: listContainer });
+            const emailComponent = EmailTag({ onDelete: props.onDelete, email });
             emailComponents[email.id] = emailComponent;
             listContainer.appendChild(emailComponent.render());
         });
@@ -44,7 +43,7 @@ export function EmailList(props: EmailListProps): EmailListApi {
             return !emailComponents[email.id];
         });
         newEmails.forEach(function (email: Email) {
-            const emailComponent = EmailTag({ onDelete: removeEmail, email, node: listContainer });
+            const emailComponent = EmailTag({ onDelete: removeEmail, email });
             emailComponents[email.id] = emailComponent;
             listContainer.insertBefore(emailComponent.render(), emailFieldElement);
         });
@@ -65,7 +64,6 @@ export function EmailList(props: EmailListProps): EmailListApi {
     }
 
     return {
-        container: listContainer,
         render,
         remove,
         update,

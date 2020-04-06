@@ -8,13 +8,11 @@ import { EmailList, EmailListApi } from './EmailList';
 import { EmailField } from './EmailField';
 
 export interface LayoutProps {
-    node: HTMLElement;
     repository: EmailRepositoryApi;
 }
 
 export function Layout(props: LayoutProps): Component {
     const repository = props.repository;
-    //const node = props.node;
 
     const layoutComponents: Record<string, Component> = {};
     const layoutContainer = document.createElement('div');
@@ -22,11 +20,10 @@ export function Layout(props: LayoutProps): Component {
     layoutContainer.setAttribute('class', CLASS_NAMES.EMAILS_INPUT);
 
     function render(): HTMLElement {
-        const emailField = EmailField({ node: layoutContainer, emailValidator: repository.validator, onSubmit: repository.addEmail })
+        const emailField = EmailField({ emailValidator: repository.validator, onSubmit: repository.addEmail })
         layoutComponents.emailField = emailField;
 
         const emailList = EmailList({
-            node: layoutContainer,
             onDelete: repository.deleteEmail,
             emails: repository.getAllEmails(),
             emailField,
@@ -45,5 +42,5 @@ export function Layout(props: LayoutProps): Component {
         (layoutComponents.emailList as EmailListApi).update(emails);
     });
 
-    return { container: layoutContainer, render, remove };
+    return { render, remove };
 }

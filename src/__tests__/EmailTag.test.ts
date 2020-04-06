@@ -3,8 +3,6 @@ import { Component, DeleteHandler } from '../types';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = function(): void {};
-const defaultNode = document.createElement("div");
-defaultNode.setAttribute("id", "default-node");
 const defaultEmail = {
     id: 'email@tag.com',
     value: 'email@tag.com',
@@ -12,12 +10,10 @@ const defaultEmail = {
 }
 
 function createTestComponent({
-    node = defaultNode,
     onDelete = noop as DeleteHandler,
     email = defaultEmail,
 } = {}): Component {
     return EmailTag({
-        node,
         onDelete,
         email,
     })

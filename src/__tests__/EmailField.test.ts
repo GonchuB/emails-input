@@ -3,17 +3,13 @@ import { Component, SubmitHandler, EmailValidator, EmailValue } from '../types';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = function(): void {};
-const defaultNode = document.createElement("div");
-defaultNode.setAttribute("id", "default-node");
 const defaultEmailValidator = function(email: EmailValue): boolean{ return email.length > 0 }
 
 function createTestComponent({
-    node = defaultNode,
     onSubmit = noop as SubmitHandler,
     emailValidator = defaultEmailValidator as EmailValidator,
 } = {}): Component {
     return EmailField({
-        node,
         onSubmit,
         emailValidator,
     })

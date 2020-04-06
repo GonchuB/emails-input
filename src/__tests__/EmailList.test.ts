@@ -12,16 +12,14 @@ const defaultEmailField = {
         return element
     },
     remove: noop,
-    container: defaultNode,
 }
 
 function createTestComponent({
-    node = defaultNode,
-    onDelete= noop as DeleteHandler,
+    onDelete = noop as DeleteHandler,
     emails = [{ id: 'email@example.com', value:'email@example.com', isValid: true }],
     emailField = defaultEmailField,
 }): EmailListApi {
-    return EmailList({ node,
+    return EmailList({
         onDelete,
         emails,
         emailField,

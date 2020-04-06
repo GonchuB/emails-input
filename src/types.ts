@@ -34,7 +34,6 @@ export interface EmailRepositoryApi {
 }
 
 export interface Component {
-    container: HTMLElement;
     remove: () => void;
     render: () => HTMLElement;
 }

@@ -23,7 +23,7 @@ export function EmailsInput(node: HTMLElement, options: PublicOptions): PublicAp
         })
     }
 
-    const layoutElement = Layout({ node, repository });
+    const layoutElement = Layout({ repository });
     node.appendChild(layoutElement.render());
 
     return {

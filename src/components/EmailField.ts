@@ -6,7 +6,6 @@ import {
 import { IDS, CLASS_NAMES, STRINGS } from '../constants';
 
 interface EmailFieldProps {
-    node: HTMLElement;
     emailValidator: EmailValidator;
     onSubmit: SubmitHandler;
 }
@@ -45,5 +44,5 @@ export function EmailField(props: EmailFieldProps): Component {
         return inputElement;
     }
 
-    return { container: props.node, remove, render };
+    return { remove, render };
 }
