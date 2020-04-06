@@ -30,12 +30,26 @@ export function EmailField(props: EmailFieldProps): Component {
     function handleBlur(): void {
         submitField();
     }
+    function handlePaste(event: ClipboardEvent): void {
+        event.preventDefault();
+        if (!event.clipboardData || !event.clipboardData.getData) {
+            return;
+        }
+        event.clipboardData
+            .getData('text')
+            .split(',')
+            .forEach(function (dirtyEmail: string): void {
+                props.onSubmit(dirtyEmail.replace(/\s+/g, ''));
+            });
+    }
     inputElement.addEventListener('keypress', handleInputKeyPress);
     inputElement.addEventListener('blur', handleBlur);
+    inputElement.addEventListener('paste', handlePaste);
 
     function remove(): void {
         inputElement.removeEventListener('keypress', handleInputKeyPress);
         inputElement.removeEventListener('blur', handleBlur);
+        inputElement.removeEventListener('paste', handlePaste);
         inputElement.remove();
     }
     function render(): HTMLInputElement {

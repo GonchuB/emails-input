@@ -6,6 +6,22 @@ interface EmailTagProps {
     email: Email;
 }
 
+function createSvgIcon(): SVGElement {
+    const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svgElement.setAttribute('aria-hidden', 'true');
+    svgElement.setAttribute('viewbox', '0 0 8 8');
+    svgElement.setAttribute('width', '8px');
+    svgElement.setAttribute('height', '8px');
+    svgElement.setAttribute('fill', 'none');
+
+    const svgPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    svgPath.setAttribute('d', 'M8 0.8L7.2 0L4 3.2L0.8 0L0 0.8L3.2 4L0 7.2L0.8 8L4 4.8L7.2 8L8 7.2L4.8 4L8 0.8Z');
+    svgPath.setAttribute('fill', '#050038');
+
+    svgElement.appendChild(svgPath);
+    return svgElement;
+}
+
 export function EmailTag(props: EmailTagProps): Component {
     const emailElement = document.createElement('span');
     emailElement.setAttribute('id', IDS.EMAIL_TAG(props.email.id));
@@ -15,17 +31,7 @@ export function EmailTag(props: EmailTagProps): Component {
     emailActionElement.setAttribute('tabindex', '0');
     emailActionElement.setAttribute('aria-label', ACCESSIBILITY.DELETE_EMAIL_BUTTON(props.email.value));
 
-    const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    const svgPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-
-    svgElement.setAttribute('aria-hidden', 'true');
-    svgElement.setAttribute('viewbox', '0 0 8 8');
-    svgElement.setAttribute('width', '8px');
-    svgElement.setAttribute('height', '8px');
-    svgElement.setAttribute('fill', 'none');
-    svgPath.setAttribute('d', 'M8 0.8L7.2 0L4 3.2L0.8 0L0 0.8L3.2 4L0 7.2L0.8 8L4 4.8L7.2 8L8 7.2L4.8 4L8 0.8Z');
-    svgPath.setAttribute('fill', '#050038');
-    svgElement.appendChild(svgPath);
+    const svgElement = createSvgIcon();
 
     function handleDelete(): void {
         props.onDelete(props.email.id);
