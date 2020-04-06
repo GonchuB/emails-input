@@ -35,6 +35,7 @@
   font-size: 12px;
   margin-left: 4px;
   padding: 0 4px;
+  cursor: pointer;
 }
 
 .emails-input--field {
