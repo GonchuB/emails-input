@@ -38,8 +38,11 @@ export function Layout(props: LayoutProps): Component {
         return layoutContainer;
     }
 
-    function remove() {
-        console.log('remove');
+    function remove(): void {
+        if (layoutComponents.emailList) {
+            layoutComponents.emailList.remove();
+            layoutContainer.remove();
+        }
     }
 
     props.repository.subscribe(function(emails: Email[]): void {
