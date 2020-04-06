@@ -41,6 +41,16 @@ describe('EmailField component', function () {
 
             expect(onSubmit).toHaveBeenCalledWith('some@email.com');
         });
+        it('submits the field value when pressing comma', function () {
+            const onSubmit = jest.fn();
+            const emailField = createTestComponent({ onSubmit });
+
+            const emailFieldElement = emailField.render();
+            (emailFieldElement as HTMLInputElement).value = 'some@email.com';
+            emailFieldElement.dispatchEvent(new KeyboardEvent('keypress', { code: 'Comma' }));
+
+            expect(onSubmit).toHaveBeenCalledWith('some@email.com');
+        });
         it('does not submit when pressing enter if the field is empty', function () {
             const onSubmit = jest.fn();
             const emailField = createTestComponent({ onSubmit });

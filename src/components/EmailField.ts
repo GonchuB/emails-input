@@ -22,7 +22,7 @@ export function EmailField(props: EmailFieldProps): Component {
         }
     }
     function handleInputKeyPress(event: KeyboardEvent): void {
-        if (['Enter', '32'].indexOf(event.code) >= 0) {
+        if (['Enter', 'Comma'].indexOf(event.code) >= 0) {
             event.preventDefault();
             submitField();
         }
