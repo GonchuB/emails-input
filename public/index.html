@@ -38,7 +38,7 @@
         return /^.+@.+\..+$/.test(email);
       }
       const inputContainerNode = document.querySelector("#emails-input");
-      const emailsInput = EmailsInput(inputContainerNode, { initialEmails: ['admin@example.com', 'asd.com', 'bienvenido@gmail.com', 'admin@@', 'azucar@ysabor.com'], validator: isEmailValid });
+      const emailsInput = EmailsInput(inputContainerNode, { initialEmails: ['john@miro.com', 'invalid.email', 'mike@miro.com', 'alexander@miro.com'], validator: isEmailValid });
       
       document.querySelector("#button-add")?.addEventListener('click', function onButtonAddClick() {
         const email =
