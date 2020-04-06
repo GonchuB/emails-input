@@ -11,6 +11,10 @@ export interface LayoutProps {
     repository: EmailRepositoryApi;
 }
 
+/**
+If input has too many emails, user should be able to scroll it.
+Pasted emails should be converted into blocks immediately. If multiple comma-separated emails are pasted (e.g., “ivan@mail.ru, max@mail.ru”), they should be converted into multiple blocks.
+ */
 export function Layout(props: LayoutProps): Component {
     const repository = props.repository;
 

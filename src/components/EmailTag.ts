@@ -33,17 +33,19 @@ export function EmailTag(props: EmailTagProps): Component {
     function handleDelete(): void {
         props.onDelete(props.email.id);
     }
-    function handleClick(): void {
+    function handleActionClick(): void {
         handleDelete();
     }
-    function handleInputKeyPress(event: KeyboardEvent): void {
-        if (event.key === "Enter" || event.key === " ") {
+    function handleActionKeypress(event: KeyboardEvent): void {
+        if (['Enter', 'Space'].indexOf(event.code) >= 0) {
             handleDelete();
+            event.preventDefault();
         }
     }
     function remove(): void {
-        emailActionElement.removeEventListener("click", handleClick);
-        emailActionElement.removeEventListener("keypress", handleInputKeyPress);
+        emailActionElement.removeEventListener("click", handleActionClick);
+        emailActionElement.removeEventListener("keypress", handleActionKeypress);
+        emailActionElement.remove();
         emailElement.remove();
     }
     function render(): HTMLElement {
@@ -54,8 +56,8 @@ export function EmailTag(props: EmailTagProps): Component {
         emailActionElement.setAttribute("class", CLASS_NAMES.EMAIL_TAG_ACTION);
         emailActionElement.appendChild(svgElement)
 
-        emailActionElement.addEventListener("click", handleClick);
-        emailActionElement.addEventListener("keypress", handleInputKeyPress);
+        emailActionElement.addEventListener("click", handleActionClick);
+        emailActionElement.addEventListener("keypress", handleActionKeypress);
 
         emailElement.appendChild(document.createTextNode(props.email.value));
         emailElement.appendChild(emailActionElement);

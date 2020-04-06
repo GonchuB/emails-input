@@ -73,7 +73,7 @@ describe('EmailTag component', function() {
             const emailTagElement = emailTag.render();
 
             const emailActionElement = emailTagElement.querySelector('span') as HTMLElement;
-            emailActionElement.dispatchEvent(new KeyboardEvent('keypress', { key: "Enter" }));
+            emailActionElement.dispatchEvent(new KeyboardEvent('keypress', { code: "Enter" }));
 
             expect(onDelete).toHaveBeenCalledWith('email@tag.com');
         });
@@ -84,18 +84,18 @@ describe('EmailTag component', function() {
             const emailTagElement = emailTag.render();
 
             const emailActionElement = emailTagElement.querySelector('span') as HTMLElement;
-            emailActionElement.dispatchEvent(new KeyboardEvent('keypress', { key: " " }));
+            emailActionElement.dispatchEvent(new KeyboardEvent('keypress', { code: "Space" }));
 
             expect(onDelete).toHaveBeenCalledWith('email@tag.com');
         });
-        it('does not call the delete function when pressing Esc', function() {
+        it('does not call the delete function when pressing another key', function() {
             const onDelete = jest.fn();
             const emailTag = createTestComponent({ onDelete });
 
             const emailTagElement = emailTag.render();
 
             const emailActionElement = emailTagElement.querySelector('span') as HTMLElement;
-            emailActionElement.dispatchEvent(new KeyboardEvent('keypress', { key: "Esc" }));
+            emailActionElement.dispatchEvent(new KeyboardEvent('keypress', { code: "Esc" }));
 
             expect(onDelete).not.toHaveBeenCalled();
         });

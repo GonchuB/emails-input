@@ -35,7 +35,7 @@ describe('EmailField component', function() {
 
             const emailFieldElement = emailField.render();
             (emailFieldElement as HTMLInputElement).value = 'some@email.com';
-            emailFieldElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+            emailFieldElement.dispatchEvent(new KeyboardEvent('keypress', { code: 'Enter' }));
 
             expect(onSubmit).toHaveBeenCalledWith('some@email.com');
         });
@@ -45,17 +45,17 @@ describe('EmailField component', function() {
 
             const emailFieldElement = emailField.render();
             (emailFieldElement as HTMLInputElement).value = '';
-            emailFieldElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+            emailFieldElement.dispatchEvent(new KeyboardEvent('keypress', { code: 'Enter' }));
 
             expect(onSubmit).not.toHaveBeenCalled();
         });
-        it('does not submit when pressing escape', function() {
+        it('does not submit when pressing another key', function() {
             const onSubmit = jest.fn();
             const emailField = createTestComponent({ onSubmit });
 
             const emailFieldElement = emailField.render();
             (emailFieldElement as HTMLInputElement).value = 'some@email.com';
-            emailFieldElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Esc' }));
+            emailFieldElement.dispatchEvent(new KeyboardEvent('keypress', { code: 'Esc' }));
 
             expect(onSubmit).not.toHaveBeenCalled();
         });
@@ -64,7 +64,7 @@ describe('EmailField component', function() {
 
             const emailFieldElement = emailField.render();
             (emailFieldElement as HTMLInputElement).value = 'some@email.com';
-            emailFieldElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+            emailFieldElement.dispatchEvent(new KeyboardEvent('keypress', { code: 'Enter' }));
 
             expect((emailFieldElement as HTMLInputElement).value).toEqual('');
         });
@@ -111,7 +111,7 @@ describe('EmailField component', function() {
 
             emailField.remove();
 
-            emailFieldElement.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter' }));
+            emailFieldElement.dispatchEvent(new KeyboardEvent('keypress', { code: 'Enter' }));
             emailFieldElement.dispatchEvent(new MouseEvent('blur'));
             expect(onSubmit).not.toHaveBeenCalled();
         });
