@@ -53,7 +53,7 @@ describe('EmailTag component', function() {
         });
     });
     describe('click event', function() {
-        it('submits the field value when pressing enter', function() {
+        it('calls the delete function when clicking', function() {
             const onDelete = jest.fn();
             const emailTag = createTestComponent({ onDelete });
 
@@ -63,6 +63,41 @@ describe('EmailTag component', function() {
             emailActionElement.dispatchEvent(new MouseEvent('click'));
 
             expect(onDelete).toHaveBeenCalledWith('email@tag.com');
+        });
+    });
+    describe('keyboard event', function() {
+        it('calls the delete function when pressing Enter', function() {
+            const onDelete = jest.fn();
+            const emailTag = createTestComponent({ onDelete });
+
+            const emailTagElement = emailTag.render();
+
+            const emailActionElement = emailTagElement.querySelector('span') as HTMLElement;
+            emailActionElement.dispatchEvent(new KeyboardEvent('keypress', { key: "Enter" }));
+
+            expect(onDelete).toHaveBeenCalledWith('email@tag.com');
+        });
+        it('calls the delete function when pressing Space', function() {
+            const onDelete = jest.fn();
+            const emailTag = createTestComponent({ onDelete });
+
+            const emailTagElement = emailTag.render();
+
+            const emailActionElement = emailTagElement.querySelector('span') as HTMLElement;
+            emailActionElement.dispatchEvent(new KeyboardEvent('keypress', { key: " " }));
+
+            expect(onDelete).toHaveBeenCalledWith('email@tag.com');
+        });
+        it('does not call the delete function when pressing Esc', function() {
+            const onDelete = jest.fn();
+            const emailTag = createTestComponent({ onDelete });
+
+            const emailTagElement = emailTag.render();
+
+            const emailActionElement = emailTagElement.querySelector('span') as HTMLElement;
+            emailActionElement.dispatchEvent(new KeyboardEvent('keypress', { key: "Esc" }));
+
+            expect(onDelete).not.toHaveBeenCalled();
         });
     });
     describe('remove', function() {
