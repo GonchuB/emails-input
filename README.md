@@ -6,7 +6,15 @@ An emails input component.
 
 https://adoring-hamilton-929e1b.netlify.com/
 
-## API
+## Instance API
+
+The `EmailsInput` component exposes 3 methods in its public API:
+
+- `getEmails(): string[]`: A method to get all entered emails. Both valid and invalid.
+- `setEmails(emails: string[]): void`: A method to replace all entered emails with new ones.
+- `subscribe(callback: (emails: string[]) => void): void`: Ability to subscribe for emails list changes.
+
+### Example usage
 
 ```html
 <!-- Your markup with buttons, headers, etc -->
@@ -57,6 +65,14 @@ Disclaimer: this is not using strict UML, rather using some of its diagrams to g
 ### After removing the 1,000 emails
 ![remove-1000](https://user-images.githubusercontent.com/857221/78587405-2eb25a00-783d-11ea-8a50-23607e865b96.png)
 
+### Improvements
+
+Things that can be changed to improve the current performance:
+
+- Minify css class names. With a minimal css-in-js solution, or using the same hash function in runtine (call function with base class name instead of just using the class name) as in build time (pre-process css class names).
+- When adding or removing elements using the ui, use an ad-hoc reaction that won't update the full list of emails (trying to find the "deleted emails" currently iterates over the list of rendered components to check if they were delete).
+- Use the `Component` abstraction to take care of manipulating the dom, adding and removing event listeners, etc. Not necessarily related to performance, but having DOM manipulation done in one place only helps reduce memory leaks. By abstracting the DOM under a `Component` interface, it can be changed in isolation in the future, optimised, etc.
+
 ## Building the repo
 
 ```shell
@@ -69,4 +85,25 @@ Builds the js and moves it to the `./public` folder.
 
 ```shell
 npm run build:public
+```
+
+## Running tests
+
+```shell
+npm run test
+```
+
+## Running the demo locally
+
+First, build the `emails-input.js` bundle and move it to the `public` folder:
+```shell
+npm run build:public
+```
+
+Use a static file server to serve the contents of `public`:
+```shell
+# Using serve
+npx serve public
+# or using python
+cd public && python -m SimpleHTTPServer 5000
 ```
