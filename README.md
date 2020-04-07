@@ -69,7 +69,7 @@ The `EmailsInput` component exposes 3 methods in its public API:
 
 Disclaimer: this is not using strict UML, rather using some of its diagrams to give an idea of the design.
 
-![UML-diagram](https://user-images.githubusercontent.com/857221/78648384-2ea56f00-78bc-11ea-930c-48d30784f9fa.png)
+![UML-diagram](https://user-images.githubusercontent.com/857221/78677524-23683880-78e8-11ea-9e22-6eb4e2c378b9.png)
 
 ## Performance
 
