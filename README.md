@@ -40,6 +40,12 @@ https://adoring-hamilton-929e1b.netlify.com/
 </script>
 ```
 
+## Solution design
+
+Disclaimer: this is not using strict UML, rather using some of its diagrams to give an idea of the design.
+
+![UML-diagram](https://user-images.githubusercontent.com/857221/78648384-2ea56f00-78bc-11ea-930c-48d30784f9fa.png)
+
 ## Performance
 
 ### Pasting 50 csv emails
@@ -57,7 +63,7 @@ https://adoring-hamilton-929e1b.netlify.com/
 npm run build
 ```
 
-## Building to public
+## Building to `public`
 
 Builds the js and moves it to the `./public` folder.
 
