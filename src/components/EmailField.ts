@@ -44,10 +44,6 @@ export function EmailField(props: EmailFieldProps): Component {
                 props.onSubmit(dirtyEmail.replace(/\s+/g, ''));
             });
     }
-    inputElement.addEventListener('keypress', handleInputKeyPress);
-    inputElement.addEventListener('blur', handleBlur);
-    inputElement.addEventListener('paste', handlePaste);
-
     function remove(): HTMLInputElement {
         inputElement.removeEventListener('keypress', handleInputKeyPress);
         inputElement.removeEventListener('blur', handleBlur);
@@ -57,6 +53,13 @@ export function EmailField(props: EmailFieldProps): Component {
     function render(): HTMLInputElement {
         return inputElement;
     }
+    function focus(): void {
+        inputElement.focus();
+    }
 
-    return { remove, render };
+    inputElement.addEventListener('keypress', handleInputKeyPress);
+    inputElement.addEventListener('blur', handleBlur);
+    inputElement.addEventListener('paste', handlePaste);
+
+    return { remove, render, focus };
 }

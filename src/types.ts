@@ -37,4 +37,5 @@ export interface EmailRepositoryApi {
 export interface Component {
     remove: () => HTMLElement;
     render: () => HTMLElement;
+    focus?: () => void;
 }
