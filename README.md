@@ -1,6 +1,8 @@
 # emails input
 
-An emails input component.
+A 4KB emails input component.
+
+![emails-input](https://user-images.githubusercontent.com/857221/78660447-5f41d480-78cd-11ea-8549-77c8e44cb390.png)
 
 ## Live demos
 
@@ -71,13 +73,20 @@ Disclaimer: this is not using strict UML, rather using some of its diagrams to g
 
 ## Performance
 
+### Bundle size
+
+![bundle-size](https://user-images.githubusercontent.com/857221/78660242-0f630d80-78cd-11ea-9860-dc486ccca898.png)
+
 ### Pasting 50 csv emails
+
 ![paste-50](https://user-images.githubusercontent.com/857221/78581134-c14dfb80-7833-11ea-9e75-9e60374704b7.jpg)
 
 ### Pasting 1,000 csv emails
+
 ![paste-1000](https://user-images.githubusercontent.com/857221/78581127-be530b00-7833-11ea-8940-e882c401afc3.jpg)
 
 ### After removing the 1,000 emails
+
 ![remove-1000](https://user-images.githubusercontent.com/857221/78587405-2eb25a00-783d-11ea-8a50-23607e865b96.png)
 
 ## Improvements
