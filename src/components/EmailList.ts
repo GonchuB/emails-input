@@ -1,6 +1,6 @@
 import { DeleteHandler, Email, Component } from '../types';
-import { IDS, CLASS_NAMES } from '../constants';
 import { EmailTag } from './EmailTag';
+import { IDS, CLASS_NAMES } from '../constants';
 
 interface EmailListProps {
     uniqueId: string;

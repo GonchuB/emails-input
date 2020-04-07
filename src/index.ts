@@ -6,6 +6,7 @@ import './styles.css';
 
 const DEFAULT_EMAIL_REGEXP = /^.+@.+\..+$/;
 
+// Keep count of the times EmailsInput was called. Use it to make sure each id is unique in the dom.
 let instanceCount = 0;
 
 export function EmailsInput(node: HTMLElement, options: PublicOptions): PublicApi {
@@ -16,21 +17,20 @@ export function EmailsInput(node: HTMLElement, options: PublicOptions): PublicAp
     }
     const repository = EmailRepository(options.initialEmails || [], options.validator || defaultValidator);
 
+    // Adapt internal representation to expected value type
+    function emailValue(email: Email): EmailValue {
+        return email.value;
+    }
     function getEmails(): EmailValue[] {
-        return repository.getAllEmails().map(function (email: Email) {
-            return email.value;
-        });
+        return repository.getAllEmails().map(emailValue);
     }
     function subscribe(callback: EmailValueChangeHandler): void {
-        repository.subscribe(function (emails: Email[]) {
-            callback(
-                emails.map(function (email: Email) {
-                    return email.value;
-                }),
-            );
+        repository.subscribe(function (emails: Email[]): void {
+            callback(emails.map(emailValue));
         });
     }
 
+    // Create layout and append to node.
     const layoutElement = Layout({
         repository,
         placeholder: options.placeholder,

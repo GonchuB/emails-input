@@ -1,7 +1,7 @@
 import { EmailRepositoryApi, Component, Email } from '../types';
-import { IDS, CLASS_NAMES } from '../constants';
 import { EmailList, EmailListApi } from './EmailList';
 import { EmailField } from './EmailField';
+import { IDS, CLASS_NAMES } from '../constants';
 
 export interface LayoutProps {
     uniqueId: string;
