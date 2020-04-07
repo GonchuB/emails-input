@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Multiple emails-input</title>
+    <meta charset="UTF-8" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="./form.css" />
+  </head>
+
+  <body>
+    <div class="card--container">
+      <div class="card">
+        <div class="card--box">
+          <h2 class="card--title">
+            Share <strong>Board name</strong> with others
+          </h2>
+          <div class="card--emails-input" id="emails-input-1"></div>
+        </div>
+
+        <div class="card--footer">
+          <button id="button-add-1" class="card--footer-button">
+            Add email
+          </button>
+          <button id="button-get-1" class="card--footer-button">
+            Get emails count
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card--container">
+      <div class="card">
+        <div class="card--box">
+          <h2 class="card--title">
+            Share <strong>Another board name</strong> with others
+          </h2>
+          <div class="card--emails-input" id="emails-input-2"></div>
+        </div>
+
+        <div class="card--footer">
+        </div>
+    </div>
+
+    <script src="./emails-input.js"></script>
+    <script>
+      function isEmailValid(email) {
+        return /^.+@.+\..+$/.test(email);
+      }
+      const inputContainerNode1 = document.querySelector("#emails-input-1");
+      const emailsInput1 = EmailsInput(inputContainerNode1, { initialEmails: ['john@miro.com', 'invalid.email', 'mike@miro.com', 'alexander@miro.com'], validator: isEmailValid });
+      
+      document.querySelector("#button-add-1").addEventListener('click', function onButtonAddClick() {
+        const email =
+          (Math.random().toString(36) + "00000000000000000").slice(2, 12) +
+          "@" +
+          (Math.random() > 0.2 ? "domain" : "") +
+          ".com";
+      
+        const allEmails = emailsInput1.getEmails();
+        emailsInput1.setEmails(allEmails.concat([email]));
+      });
+      
+      document.querySelector("#button-get-1").addEventListener('click', function onButtonGetClick() {
+        const validEmailsCount = emailsInput1.getEmails().filter(function(email) {
+          return isEmailValid(email);
+        }).length;
+      
+        alert(validEmailsCount);
+      });
+    </script>
+
+  <script>
+    function isNotEmpty(email) {
+      return email.length > 0;
+    }
+    const inputContainerNode2 = document.querySelector("#emails-input-2");
+    const emailsInput2 = EmailsInput(inputContainerNode2, { initialEmails: [], validator: isNotEmpty });
+  </script>
+  </body>
+</html>
