@@ -4,9 +4,11 @@ import { Layout } from './components/Layout';
 
 import './styles.css';
 
+const DEFAULT_EMAIL_REGEXP = /^.+@.+\..+$/;
+
 export function EmailsInput(node: HTMLElement, options: PublicOptions): PublicApi {
     function defaultValidator(emailValue: EmailValue): boolean {
-        return /^.+@.+\..+$/.test(emailValue);
+        return DEFAULT_EMAIL_REGEXP.test(emailValue);
     }
     const repository = EmailRepository(options.initialEmails || [], options.validator || defaultValidator);
 
@@ -25,7 +27,7 @@ export function EmailsInput(node: HTMLElement, options: PublicOptions): PublicAp
         });
     }
 
-    const layoutElement = Layout({ repository });
+    const layoutElement = Layout({ repository, placeholder: options.placeholder });
     node.appendChild(layoutElement.render());
 
     return {

@@ -5,6 +5,7 @@ import { EmailField } from './EmailField';
 
 export interface LayoutProps {
     repository: EmailRepositoryApi;
+    placeholder?: string;
 }
 
 export function Layout(props: LayoutProps): Component {
@@ -16,7 +17,11 @@ export function Layout(props: LayoutProps): Component {
     layoutContainer.setAttribute('class', CLASS_NAMES.EMAILS_INPUT);
 
     function render(): HTMLElement {
-        const emailField = EmailField({ emailValidator: repository.validator, onSubmit: repository.addEmail });
+        const emailField = EmailField({
+            emailValidator: repository.validator,
+            onSubmit: repository.addEmail,
+            placeholder: props.placeholder,
+        });
         layoutComponents.emailField = emailField;
 
         const emailList = EmailList({

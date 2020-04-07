@@ -7,7 +7,19 @@ An emails input component.
 - Single input https://adoring-hamilton-929e1b.netlify.com/
 - Multiple inputs https://adoring-hamilton-929e1b.netlify.com/multipleInputs
 
-## Instance API
+## API
+
+### EmailsInput function
+
+The `EmailsInput` function accepts 2 parameters:
+
+- `node` (required): entry point of the emails input. The component will attach itself to this DOM node.
+- `options` (required): options object to customise the component
+- `options.initialEmails` (optional): an array of strings to be used as initial data. Defaults to `[]`
+- `options.validator` (optional): a validator function that, given a string, returns true if the string is a valid email, false otherwise. Defaults to testing the regular expression `/^.+@.+\..+$/`.
+- `options.placeholder` (optional): the placeholder that will be used for the input element. Defaults to `'add more people...'`
+
+### EmailsInput instance methods
 
 The `EmailsInput` component exposes 3 methods in its public API:
 
@@ -66,14 +78,15 @@ Disclaimer: this is not using strict UML, rather using some of its diagrams to g
 ### After removing the 1,000 emails
 ![remove-1000](https://user-images.githubusercontent.com/857221/78587405-2eb25a00-783d-11ea-8a50-23607e865b96.png)
 
-### Improvements
+## Improvements
 
-Things that can be changed to improve the current performance:
+Things that can be changed to improve the current codebase and/or performance:
 
 - Minify css class names. With a minimal css-in-js solution, or using the same hash function in runtine (call function with base class name instead of just using the class name) as in build time (pre-process css class names).
 - When adding or removing elements using the ui, use an ad-hoc reaction that won't update the full list of emails (trying to find the "deleted emails" currently iterates over the list of rendered components to check if they were delete).
 - Use the `Component` abstraction to take care of manipulating the dom, adding and removing event listeners, etc. Not necessarily related to performance, but having DOM manipulation done in one place only helps reduce memory leaks. By abstracting the DOM under a `Component` interface, it can be changed in isolation in the future, optimised, etc.
 - When using multiple inputs, there could be collision in the IDs. This is not ideal, but is currently not affecting the correct behavior of the component, as selectors are not used for DOM manipulation or event handling (stored references to the DOM element). If this were to be avoided, either the `Component` abstraction takes care of appending instance identifiers (increasing numbers based on the # of instances, for example), or that same instance identifier can be injected into the component tree so that each `Component` appends the instance identifier.
+- Avoid prop drilling. Although the current tree is quite shallow, prop drilling usually turns into a mess. If more options or properties are needed, consider having something shared between components to handle different configurations.
 
 ## Building the repo
 

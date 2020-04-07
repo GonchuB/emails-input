@@ -19,8 +19,9 @@ export interface PublicApi {
 }
 
 export interface PublicOptions {
-    initialEmails: EmailValue[];
-    validator: EmailValidator;
+    initialEmails?: EmailValue[];
+    validator?: EmailValidator;
+    placeholder?: string;
 }
 
 export type EmailRepositoryChangeHandler = (emails: Email[]) => void;

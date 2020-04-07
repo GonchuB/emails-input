@@ -4,6 +4,7 @@ import { IDS, CLASS_NAMES, STRINGS, ACCESSIBILITY } from '../constants';
 interface EmailFieldProps {
     emailValidator: EmailValidator;
     onSubmit: SubmitHandler;
+    placeholder?: string;
 }
 
 export function EmailField(props: EmailFieldProps): Component {
@@ -11,7 +12,7 @@ export function EmailField(props: EmailFieldProps): Component {
     inputElement.setAttribute('type', 'email');
     inputElement.setAttribute('id', IDS.EMAIL_FIELD);
     inputElement.setAttribute('class', CLASS_NAMES.EMAIL_FIELD);
-    inputElement.setAttribute('placeholder', STRINGS.FIELD_PLACEHOLDER);
+    inputElement.setAttribute('placeholder', props.placeholder || STRINGS.FIELD_PLACEHOLDER);
     inputElement.setAttribute('aria-label', ACCESSIBILITY.EMAIL_FIELD_INPUT);
 
     function submitField(): void {

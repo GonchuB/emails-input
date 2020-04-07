@@ -1,5 +1,5 @@
 import { EmailField } from '../components/EmailField';
-import { Component, SubmitHandler, EmailValidator, EmailValue } from '../types';
+import { Component, SubmitHandler, EmailValidator, EmailValue, PublicOptions } from '../types';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = function (): void {};
@@ -10,10 +10,12 @@ const defaultEmailValidator = function (email: EmailValue): boolean {
 function createTestComponent({
     onSubmit = noop as SubmitHandler,
     emailValidator = defaultEmailValidator as EmailValidator,
+    placeholder = undefined as PublicOptions['placeholder'],
 } = {}): Component {
     return EmailField({
         onSubmit,
         emailValidator,
+        placeholder,
     });
 }
 
@@ -28,6 +30,16 @@ describe('EmailField component', function () {
             expect(emailFieldElement.getAttribute('class')).toEqual('emails-input--field');
             expect(emailFieldElement.getAttribute('type')).toEqual('email');
             expect(emailFieldElement.getAttribute('placeholder')).toEqual('add more people...');
+        });
+        it('accepts a custom placeholder', function () {
+            const emailField = createTestComponent({ placeholder: 'custom placeholder' });
+
+            const emailFieldElement = emailField.render();
+
+            expect(emailFieldElement.getAttribute('id')).toEqual('emails-input-field');
+            expect(emailFieldElement.getAttribute('class')).toEqual('emails-input--field');
+            expect(emailFieldElement.getAttribute('type')).toEqual('email');
+            expect(emailFieldElement.getAttribute('placeholder')).toEqual('custom placeholder');
         });
     });
     describe('keypress event', function () {
