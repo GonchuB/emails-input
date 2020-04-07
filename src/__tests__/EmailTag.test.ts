@@ -13,6 +13,7 @@ function createTestComponent({ onDelete = noop as DeleteHandler, email = default
     return EmailTag({
         onDelete,
         email,
+        uniqueId: '',
     });
 }
 

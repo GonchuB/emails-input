@@ -16,6 +16,7 @@ function createTestComponent({
         onSubmit,
         emailValidator,
         placeholder,
+        uniqueId: '',
     });
 }
 

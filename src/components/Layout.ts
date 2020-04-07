@@ -4,6 +4,7 @@ import { EmailList, EmailListApi } from './EmailList';
 import { EmailField } from './EmailField';
 
 export interface LayoutProps {
+    uniqueId: string;
     repository: EmailRepositoryApi;
     placeholder?: string;
 }
@@ -13,7 +14,7 @@ export function Layout(props: LayoutProps): Component {
 
     const layoutComponents: Record<string, Component> = {};
     const layoutContainer = document.createElement('div');
-    layoutContainer.setAttribute('id', IDS.EMAILS_INPUT);
+    layoutContainer.setAttribute('id', IDS.EMAILS_INPUT + props.uniqueId);
     layoutContainer.setAttribute('class', CLASS_NAMES.EMAILS_INPUT);
 
     function render(): HTMLElement {
@@ -21,6 +22,7 @@ export function Layout(props: LayoutProps): Component {
             emailValidator: repository.validator,
             onSubmit: repository.addEmail,
             placeholder: props.placeholder,
+            uniqueId: props.uniqueId,
         });
         layoutComponents.emailField = emailField;
 
@@ -28,6 +30,7 @@ export function Layout(props: LayoutProps): Component {
             onDelete: repository.deleteEmail,
             emails: repository.getAllEmails(),
             emailField,
+            uniqueId: props.uniqueId,
         });
         layoutComponents.emailList = emailList;
         layoutContainer.appendChild(emailList.render());

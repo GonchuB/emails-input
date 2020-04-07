@@ -3,6 +3,7 @@ import { IDS, CLASS_NAMES } from '../constants';
 import { EmailTag } from './EmailTag';
 
 interface EmailListProps {
+    uniqueId: string;
     onDelete: DeleteHandler;
     emails: Email[];
     emailField: Component;
@@ -15,7 +16,7 @@ export interface EmailListApi extends Component {
 export function EmailList(props: EmailListProps): EmailListApi {
     const emailComponents: Record<string, Component> = {};
     const listContainer = document.createElement('div');
-    listContainer.setAttribute('id', IDS.EMAIL_LIST_CONTAINER);
+    listContainer.setAttribute('id', IDS.EMAIL_LIST_CONTAINER + props.uniqueId);
     listContainer.setAttribute('class', CLASS_NAMES.EMAILS_INPUT_CONTAINER);
 
     const emailFieldElement: HTMLElement = props.emailField.render();
@@ -28,7 +29,7 @@ export function EmailList(props: EmailListProps): EmailListApi {
     }
     function render(): HTMLElement {
         props.emails.forEach(function (email: Email) {
-            const emailComponent = EmailTag({ onDelete: removeEmail, email });
+            const emailComponent = EmailTag({ onDelete: removeEmail, email, uniqueId: props.uniqueId });
             emailComponents[email.id] = emailComponent;
             listContainer.appendChild(emailComponent.render());
         });
@@ -41,7 +42,7 @@ export function EmailList(props: EmailListProps): EmailListApi {
             return !emailComponents[email.id];
         });
         newEmails.forEach(function (email: Email) {
-            const emailComponent = EmailTag({ onDelete: removeEmail, email });
+            const emailComponent = EmailTag({ onDelete: removeEmail, email, uniqueId: props.uniqueId });
             emailComponents[email.id] = emailComponent;
             listContainer.insertBefore(emailComponent.render(), emailFieldElement);
         });

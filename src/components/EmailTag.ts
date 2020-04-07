@@ -2,6 +2,7 @@ import { DeleteHandler, Email, Component } from '../types';
 import { IDS, CLASS_NAMES, ACCESSIBILITY } from '../constants';
 
 interface EmailTagProps {
+    uniqueId: string;
     onDelete: DeleteHandler;
     email: Email;
 }
@@ -24,7 +25,7 @@ function createSvgIcon(): SVGElement {
 
 export function EmailTag(props: EmailTagProps): Component {
     const emailElement = document.createElement('span');
-    emailElement.setAttribute('id', IDS.EMAIL_TAG(props.email.id));
+    emailElement.setAttribute('id', IDS.EMAIL_TAG(props.email.id + props.uniqueId));
 
     const emailActionElement = document.createElement('span');
     emailActionElement.setAttribute('role', 'button');

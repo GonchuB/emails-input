@@ -6,7 +6,11 @@ import './styles.css';
 
 const DEFAULT_EMAIL_REGEXP = /^.+@.+\..+$/;
 
+let instanceCount = 0;
+
 export function EmailsInput(node: HTMLElement, options: PublicOptions): PublicApi {
+    instanceCount += 1;
+
     function defaultValidator(emailValue: EmailValue): boolean {
         return DEFAULT_EMAIL_REGEXP.test(emailValue);
     }
@@ -27,7 +31,11 @@ export function EmailsInput(node: HTMLElement, options: PublicOptions): PublicAp
         });
     }
 
-    const layoutElement = Layout({ repository, placeholder: options.placeholder });
+    const layoutElement = Layout({
+        repository,
+        placeholder: options.placeholder,
+        uniqueId: '--' + instanceCount.toString(),
+    });
     node.appendChild(layoutElement.render());
 
     return {
