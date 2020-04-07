@@ -40,7 +40,7 @@
       const inputContainerNode = document.querySelector("#emails-input");
       const emailsInput = EmailsInput(inputContainerNode, { initialEmails: ['john@miro.com', 'invalid.email', 'mike@miro.com', 'alexander@miro.com'], validator: isEmailValid });
       
-      document.querySelector("#button-add")?.addEventListener('click', function onButtonAddClick() {
+      document.querySelector("#button-add").addEventListener('click', function onButtonAddClick() {
         const email =
           (Math.random().toString(36) + "00000000000000000").slice(2, 12) +
           "@" +
@@ -51,7 +51,7 @@
         emailsInput.setEmails(allEmails.concat([email]));
       });
       
-      document.querySelector("#button-get")?.addEventListener('click', function onButtonGetClick() {
+      document.querySelector("#button-get").addEventListener('click', function onButtonGetClick() {
         const validEmailsCount = emailsInput.getEmails().filter(function(email) {
           return isEmailValid(email);
         }).length;

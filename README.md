@@ -30,7 +30,7 @@ https://adoring-hamilton-929e1b.netlify.com/
         emailsInput.setEmails(allEmails.concat([email]));
     });
     
-    document.querySelector("#button-get")?.addEventListener('click', function onButtonGetClick() {
+    document.querySelector("#button-get").addEventListener('click', function onButtonGetClick() {
         const validEmailsCount = emailsInput.getEmails().filter(function(email) {
             return isEmailValid(email);
         }).length;
