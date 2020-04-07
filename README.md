@@ -4,6 +4,8 @@ An emails input component.
 
 ## Live demos
 
+Using [Netlify](https://www.netlify.com/)
+
 - Single input https://adoring-hamilton-929e1b.netlify.com/
 - Multiple inputs https://adoring-hamilton-929e1b.netlify.com/multipleInputs
 

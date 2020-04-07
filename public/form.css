@@ -30,7 +30,8 @@
 }
 
 .card--emails-input {
-  padding: 24px 0;
+  padding-top: 24px;
+  max-height: 150px;
 }
 
 .card--footer {
